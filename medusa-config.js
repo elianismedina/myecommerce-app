@@ -55,7 +55,7 @@ const modules = {
   },
   cacheService: {
     resolve: "@medusajs/cache-redis",
-    options: { 
+    options: {
       redisUrl: process.env.CACHE_REDIS_URL,
       ttl: 30,
     },
@@ -71,7 +71,7 @@ const projectConfig = {
   database_url: DATABASE_URL,
   admin_cors: ADMIN_CORS,
   // Uncomment the following lines to enable REDIS
-  // redis_url: REDIS_URL
+  redis_url: REDIS_URL,
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule} */
