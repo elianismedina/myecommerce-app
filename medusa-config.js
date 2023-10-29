@@ -37,7 +37,7 @@ const plugins = [
   `medusa-fulfillment-manual`,
   `medusa-payment-manual`,
   {
-    resolve: `@medusajs/admin`,
+    resolve: `@medusajs/file-local`,
     options: {
       upload_dir: "uploads",
     },
@@ -55,18 +55,17 @@ const plugins = [
 ];
 
 const modules = {
-  /*eventBus: {
-    resolve: "@medusajs/event-bus-redis",
-    options: {
-      redisUrl: REDIS_URL
-    }
+  eventBus: {
+    resolve: "@medusajs/event-bus-local",
   },
   cacheService: {
     resolve: "@medusajs/cache-redis",
-    options: {
-      redisUrl: REDIS_URL
-    }
-  },*/
+    options: { 
+      redisUrl: process.env.CACHE_REDIS_URL,
+      ttl: 30,
+    },
+  },
+  // ...
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule["projectConfig"]} */
