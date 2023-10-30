@@ -36,7 +36,7 @@ const REDIS_URL = process.env.REDIS_URL || "redis://localhost:6379";
 const plugins = [
   `medusa-fulfillment-manual`,
   `medusa-payment-manual`,
-  
+
   {
     resolve: "@medusajs/admin",
     /** @type {import('@medusajs/admin').PluginOptions} */
@@ -47,6 +47,22 @@ const plugins = [
       },
     },
   },
+  {
+    resolve: `medusa-payment-stripe`,
+    options: {
+      api_key: process.env.STRIPE_API_KEY,},
+  },
+  {
+    resolve: `medusa-file-minio`,
+    options: {
+        endpoint: process.env.MINIO_ENDPOINT,
+        bucket: process.env.MINIO_BUCKET,
+        access_key_id: process.env.MINIO_ACCESS_KEY,
+        secret_access_key: process.env.MINIO_SECRET_KEY,
+    },
+  },
+
+
 ];
 
 const modules = {
@@ -72,6 +88,7 @@ const projectConfig = {
   admin_cors: ADMIN_CORS,
   // Uncomment the following lines to enable REDIS
   redis_url: REDIS_URL,
+  
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule} */
